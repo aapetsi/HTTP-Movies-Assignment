@@ -1,31 +1,33 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-const EditMovie = props => {
-  let movieToUpdate = props.location.state
+const AddMovie = props => {
   const [movie, setMovie] = useState({
-    id: movieToUpdate.id,
-    title: movieToUpdate.title,
-    director: movieToUpdate.director,
-    metascore: movieToUpdate.metascore,
-    stars: movieToUpdate.stars
+    title: '',
+    director: '',
+    metascore: '',
+    stars: ''
   })
+
   const handleChange = e => {
     setMovie({ ...movie, [e.target.name]: e.target.value })
   }
+
   const handleSubmit = e => {
     e.preventDefault()
+
     axios
-      .put(`http://localhost:5000/api/movies/${movie.id}`, movie)
+      .post(`http://localhost:5000/api/movies`, movie)
       .then(res => {
         console.log(res.data)
-        // props.history.push('/')
+        props.history.push('/')
       })
       .catch(err => {
         console.log(err)
       })
     console.log('clicked')
   }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -68,10 +70,10 @@ const EditMovie = props => {
         </label>
         <br />
 
-        <button>Edit</button>
+        <button>Add</button>
       </form>
     </div>
   )
 }
 
-export default EditMovie
+export default AddMovie
