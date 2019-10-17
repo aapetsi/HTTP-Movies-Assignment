@@ -6,7 +6,7 @@ const AddMovie = props => {
     title: '',
     director: '',
     metascore: '',
-    stars: ''
+    stars: []
   })
 
   const handleChange = e => {

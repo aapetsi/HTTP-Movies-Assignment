@@ -8,7 +8,7 @@ const EditMovie = props => {
     title: movieToUpdate.title,
     director: movieToUpdate.director,
     metascore: movieToUpdate.metascore,
-    stars: movieToUpdate.stars
+    stars: [...movieToUpdate.stars]
   })
   const handleChange = e => {
     setMovie({ ...movie, [e.target.name]: e.target.value })
